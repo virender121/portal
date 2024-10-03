@@ -1,0 +1,62 @@
+{% extends 'exam/adminbase.html' %}
+{% block content %}
+{%load static%}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Topic Listing Bootstrap 5 Template</title>
+      {% load static%}
+  <!-- CSS FILES -->        
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+                  
+  <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+
+  <link href="{% static 'css/bootstrap-icons.css'%}" rel="stylesheet">
+
+  <link href="{% static 'css/templatemo-topic-listing.css'%}" rel="stylesheet">      
+
+</head>
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">Students</h6>
+    </div>
+    <table class="table table-hover table-bordered" id="dev-table">
+      <thead>
+        <tr>
+
+          <th>Name</th>
+          <th>Photo</th>
+          <th>Contact</th>
+          <th>Address</th>
+         
+          <th>Actions</th>
+        </tr>
+      </thead>
+      {% for t in students %}
+      <tr>
+
+        <td> {{t.get_name}}</td>
+        <td> <img src="{% static t.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>
+        <td>{{t.mobile}}</td>
+        <td>{{t.address}}</td>
+        
+        <td><a class="btn btn-success btn-xs" style="border-radius: 0%;" href="{% url 'update-student' t.id  %}"><span class="glyphicon glyphicon-edit"></span></a>
+        <a class="btn btn-danger btn-xs" style="border-radius: 0%;" href="{% url 'delete-student' t.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+<br><br><br><br><br><br>
+{% endblock content %}

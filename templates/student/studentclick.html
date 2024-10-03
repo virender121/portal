@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Topic Listing Bootstrap 5 Template</title>
+     
+  <!-- CSS FILES -->        
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+                  
+  <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+
+  <link href="{% static 'css/bootstrap-icons.css'%}" rel="stylesheet">
+
+  <link href="{% static 'css/templatemo-topic-listing.css'%}" rel="stylesheet">      
+
+</head>
+
+<body id="top">
+<main>
+  {% include "exam/navbar.html" %}
+  <header class="site-header d-flex flex-column justify-content-center align-items-center">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+
+            <div class="col-lg-5 col-12 mb-5">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Homepage</a></li>
+
+                        <li class="breadcrumb-item active" aria-current="page">Web Design</li>
+                    </ol>
+                </nav>
+
+                <h2 class="text-white">Introduction to <br> Web Design 101</h2>
+
+                <div class="d-flex align-items-center mt-5">
+                    <a  class="btn custom-btn custom-border-btn  me-4" href="{% url 'studentsignup'%}">Create Your Account</a>
+
+                    <a  class="btn custom-btn custom-border-btn  me-4" href="{% url 'studentlogin'%}">Login Now</a>
+                </div>
+            </div>
+
+            <div class="col-lg-5 col-12">
+                <div class="topics-detail-block bg-white shadow-lg">
+                    <img src="{% static 'images/topics/undraw_Remote_design_team_re_urdx.png'%}" class="topics-detail-block-image img-fluid">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+  <div class="jumbotron" style="margin-bottom:0px;">
+    <h1 class="display-4">Hello Student,</h1>
+    <p class="lead">and Welcome to Online Examination System</p>
+    <hr class="my-4">
+    <p>Select any of them to access into the system</p>
+    <p class="lead">
+      <a class="btn btn-primary " href="studentsignup" style="border-radius: 0%;" role="button">Create Your Account</a>
+      <a class="btn btn-success " href="studentlogin" style="border-radius: 0%;" role="button">Login Now</a>
+    </p>
+    <br><br><br><br><br><br>
+  </div>
+</main>
+  {% include "exam/footer.html" %}
+
+</body>
+<script src="{%static 'js/jquery.min.js'%}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+<script src="{% static 'js/jquery.sticky.js'%}"></script>
+<script src="{%static 'js/click-scroll.js'%}"></script>
+<script src="{%static 'js/custom.js'%}"></script>
+</html>

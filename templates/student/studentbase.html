@@ -19,7 +19,7 @@
 
     header {
       position: fixed;
-      background: #22242A;
+      background: #80d0c7 !important;
       padding: 20px;
       width: 100%;
       z-index: 1;
@@ -157,20 +157,20 @@
 </head>
 
 <body>
-  {% include "exam/navbar.html" %}
-  {% comment %} <input type="checkbox" id="check">
+
+ <input type="checkbox" id="check">
   <!--header area start-->
   <header>
-    <label for="check">
-      <i style="left: 200px;margin-top: 17px;"class="fas fa-bars" id="sidebar_btn"></i>
-    </label>
-    <div class="left_area">
-      <h3>Online Exam</h3>
-    </div>
+    
+    <a class="navbar-brand pl-5" href="{% url 'index'%}">
+      <i class="bi-back"></i>
+      <span>Topic</span>
+  </a>
+  
     <div class="right_area">
-      <a href="/logout" class="logout_btn" style="border-radius:0px;">Logout</a>
+      <a href="{% url 'logout'%}" class="logout_btn rounded p-2" style="border-radius:0px;"> Logout</a>
     </div>
-  </header> {% endcomment %}
+  </header>
   <!--header area end-->
   <!--sidebar start-->
   <div class="site-header sidebar ">

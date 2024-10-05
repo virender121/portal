@@ -35,6 +35,7 @@
           <th>Total Marks</th>
           <th>Number of Attempts</th>
           <th>Exam Date</th>
+          <th>Cerification</th>
         </tr>
       </thead>
       {% for t in results %}
@@ -44,7 +45,7 @@
         <td> {{t.marks}}</td>
         <td>Attempt {{ forloop.counter }}</td>
         <td> {{t.date}}</td>
-        
+        <td><button>Download</button></td>
         
       </tr>
       {% endfor %}

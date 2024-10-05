@@ -50,8 +50,8 @@
         <td>{{t.mobile}}</td>
         <td>{{t.address}}</td>
         
-        <td><a class="btn btn-success btn-xs" style="border-radius: 0%;" href="{% url 'update-student' t.id  %}"><span class="glyphicon glyphicon-edit"></span></a>
-        <a class="btn btn-danger btn-xs" style="border-radius: 0%;" href="{% url 'delete-student' t.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+        <td><a class="btn btn-success btn-xs rounded" style="border-radius: 0%;" href="{% url 'update-student' t.id  %}"><i class="bi bi-pencil-fill"></i></a>
+        <a class="btn btn-danger btn-xs rounded" style="border-radius: 0%;" href="{% url 'delete-student' t.id  %}"><i class="bi bi-trash-fill"></i> </a></td>
       </tr>
       {% endfor %}
     </table>

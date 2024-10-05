@@ -1,54 +1,87 @@
 {% extends 'student/studentbase.html' %}
 {% block content %}
-{%load static%}
+{% load static %}
 
-<head>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-
-</head>
-<br><br>
+<!-- Page Content -->
 <div class="container my-4">
-    <div class="jumbotron">
+  <div class="jumbotron">
 
-        <div class="row">
+    <div class="row">
+      <div class="card border-info mx-4 my-4">
+        <div class="card-body text-default">
 
-            <div class="card border-info mx-4 my-4">
-                <div class="card-body text-default">
+          <h4 class="card-title">Exam Details :</h4>
+          <ul style="list-style: decimal;">
+            <li>Course: {{ course.course_name }}</li>
+            <li>Total Questions: {{ total_questions }}</li>
+            <li>Total Marks: {{ total_marks }}</li>
+          </ul>
 
-                    <h4 class="card-title">Exam Details :</h4>
-                    <p class="card-text">
-                        </p><ul style="list-style:decimal;">
-                            <li>Course : {{course.course_name}}</li>
-                            <li>Total Question : {{total_questions}}</li>
-                            <li>Total Marks : {{total_marks}}</li>
-                        </ul>
-                    <p></p>
+          <h4 class="card-title">Rules:</h4>
+          <ul style="list-style: decimal;">
+            <li>All questions are MCQ (multiple choice questions)</li>
+            <li><span class="text-danger">Only one choice is correct among the given options.</span></li>
+            <li>Every question carries different marks.</li>
+            <li>Answer as quickly as possible.</li>
+            <li>If you refresh or go back, you will get a new question and your previous attempt will be counted.</li>
+            <li>Questions are presented randomly.</li>
+            <li>You can view your marks immediately after submitting your answer.</li>
+          </ul>
 
+          <!-- Button to trigger modal -->
+          <button id="enterExamBtn" class="btn btn-success" style="border-radius:0;">Enter Examination</button>
 
-
-                    <h4 class="card-title">Rules :</h4>
-                    <p class="card-text">
-                        </p><ul style="list-style:decimal;">
-                            <li>All questions are MCQ (multiple choice question)</li>
-                            <li><span class="text-danger">Only one choice is correct among the given.</span></li>
-                            <li>Every question carry different marks.</li>
-                            <li>Try to answer ASAP.</li>
-                            <li>If you PRESS refresh or go back to the previous page, there will be a new question for you and the question you were on will be counted as number of attempts.</li>
-                            <li>Questions are presented randomly.</li>
-                            <li>You will be able to view marks immediately once after you submit the answer.</li>
-                        </ul>
-                    <p></p>
-                    <a href="{% url 'start-exam' course.id  %}" class="btn btn-success" style="border-radius:0px;">Enter Examination</a>
-                </div>  
-                <div class="card-footer">Best Of Luck, Students!</div>  
-            </div>  
-        </div>  
-
+        </div>
+        <div class="card-footer">Best of luck, students!</div>
+      </div>
     </div>
+  </div>
 </div>
 
-<br><br><br><br><br><br>
+<!-- Modal for Camera and Microphone Permission -->
+<div id="cameraModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Enable Camera and Microphone</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Please enable your camera and microphone to proceed with the exam.</p>
+        <button id="enableCameraBtn" class="btn btn-primary">Enable Camera & Microphone</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+  // Show the modal when Enter Exam button is clicked
+  document.getElementById('enterExamBtn').addEventListener('click', function () {
+    $('#cameraModal').modal('show');
+  });
+
+  // Handle camera and microphone permission request
+  document.getElementById('enableCameraBtn').addEventListener('click', function () {
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+      .then(function (stream) {
+        // Camera and Microphone access granted
+        console.log('Camera and Microphone enabled');
+        sessionStorage.setItem('cameraAccess', 'true');
+        sessionStorage.setItem('audioAccess', 'true');
+        // Proceed to the exam
+        window.location.href = "{% url 'start-exam' course.id %}";
+      })
+      .catch(function (error) {
+        alert('Please enable both camera and microphone to start the exam.');
+        console.error('Error accessing media devices.', error);
+      });
+  });
+</script>
+
 {% endblock content %}
